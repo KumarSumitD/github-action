@@ -1,2 +1,2 @@
 # github-action
-Playing with Github Action
+Playing with Github Actions
