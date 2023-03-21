@@ -25,15 +25,13 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const envVar = process.env
-            console.log('envVar', envVar)
-            console.log('context', context)
-      - name: Log Github Event
-        run: |
-          echo ${{ toJSON(github.event) }}
-      - name: Log Github Event 2
-        run: |
-          headSha=$(git rev-parse --short HEAD)
-          echo ${headSha}
-          branchName=$(git branch --show-current)
-          echo ${branchName}
+            const { issue, repo: mainRepo } = context;
+            const { owner, repo } = mainRepo;
+            const { data } = await github.rest.pulls.get({
+              pull_number: issue.number,
+              owner,
+              repo
+            });
+            
+            const headSha = data.head.sha;
+            console.log('headSha', headSha)
