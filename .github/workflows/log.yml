@@ -25,6 +25,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const envVar = process.env
+            console.log('envVar', envVar)
             console.log('context', context)
       - name: Log Github Event
         run: echo ${{ toJSON(github.event) }}
