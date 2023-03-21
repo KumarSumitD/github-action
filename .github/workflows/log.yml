@@ -26,3 +26,5 @@ jobs:
         with:
           script: |
             console.log('context', context)
+      - name: Log Github Event
+        run: echo ${{ toJSON(github.event) }}
