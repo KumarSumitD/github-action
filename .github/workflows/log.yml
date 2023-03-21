@@ -29,4 +29,6 @@ jobs:
             console.log('envVar', envVar)
             console.log('context', context)
       - name: Log Github Event
-        run: echo ${{ toJSON(github.event) }}
+        run: |
+          headSha=$(git rev-parse --short HEAD)
+          echo ${headSha}
