@@ -30,6 +30,9 @@ jobs:
             console.log('context', context)
       - name: Log Github Event
         run: |
+          echo ${{ toJSON(github.event) }}
+      - name: Log Github Event 2
+        run: |
           headSha=$(git rev-parse --short HEAD)
           echo ${headSha}
           branchName=$(git branch --show-current)
